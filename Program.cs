@@ -52,7 +52,8 @@ namespace Quest
                     Colors = new List<string> { "red", "blue", "green" },
                     Length = 400
                 };
-                Adventurer theAdventurer = new Adventurer(player, newRobe);
+                Hat newHat = new Hat(8);
+                Adventurer theAdventurer = new Adventurer(player, newRobe, newHat);
 
                 Console.WriteLine(theAdventurer.GetDescription());
 
