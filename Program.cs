@@ -16,6 +16,23 @@ namespace Quest
                 //   the text of the challenge
                 //   a correct answer
                 //   a number of awesome points to gain or lose depending on the success of the challenge
+                Challenge chameleon = new Challenge(@"Why do chamleons change color?
+    1) To blend in with their environment
+    2) To look cool
+    3) To communicate with other chameleons
+    4) To show how hot or cold they are
+",
+                    3, 40
+                );
+                Challenge mario = new Challenge(@"The US Mario 2 for the NES is a reskin of what Japanese game?
+    1) Terminator: Reckoning
+    2) Doki-Doki Panic
+    3) Trouble House: Traps are many!
+    4) Sailor Moon
+",
+                    2, 30
+                );
+
                 Challenge twoPlusTwo = new Challenge("2 + 2?", 4, 10);
                 Challenge theAnswer = new Challenge(
                     "What's the answer to life, the universe and everything?", 42, 25);
@@ -60,19 +77,24 @@ namespace Quest
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
-            {
-                twoPlusTwo,
-                theAnswer,
-                whatSecond,
-                guessRandom,
-                favoriteBeatle
-            };
+                List<Challenge> challenges = new List<Challenge>() { chameleon, mario, twoPlusTwo, theAnswer, whatSecond, guessRandom, favoriteBeatle };
+
+                List<int> challengesIndex = new List<int>();
+                Random random = new Random();
+
+                while (challengesIndex.Count < 5)
+                {
+                    int challengeIndex = GetRandomInt(random, 0, challenges.Count - 1);
+                    if (!challengesIndex.Contains(challengeIndex))
+                    {
+                        challengesIndex.Add(challengeIndex);
+                    }
+                }
 
                 // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                foreach (int challengeIndex in challengesIndex)
                 {
-                    challenge.RunChallenge(theAdventurer);
+                    challenges[challengeIndex].RunChallenge(theAdventurer);
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
@@ -108,6 +130,11 @@ namespace Quest
             NewQuest();
 
         }
+        static int GetRandomInt(Random random, int min, int max)
+        {
+            return random.Next(min, max + 1);
+        }
     }
+
 
 }
