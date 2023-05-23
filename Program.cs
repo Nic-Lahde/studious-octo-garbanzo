@@ -41,6 +41,7 @@ namespace Quest
                 // Here we set some reasonable min and max values.
                 //  If an Adventurer has an Awesomeness greater than the max, they are truly awesome
                 //  If an Adventurer has an Awesomeness less than the min, they are terrible
+                Prize prize = new Prize("You won an unusually heavy egg!");
                 int minAwesomeness = 0;
                 int maxAwesomeness = 100;
 
@@ -88,6 +89,7 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
+                prize.ShowPrize(theAdventurer);
                 Console.WriteLine("Would you like to play again? Y/N");
                 string choice = Console.ReadLine();
                 if (choice.ToLower() == "y" || choice.ToLower() == "yes")
