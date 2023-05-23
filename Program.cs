@@ -9,7 +9,8 @@ namespace Quest
     {
         static void Main(string[] args)
         {
-            static void NewQuest()
+            int runCounter = 1;
+            static void NewQuest(int runCounter)
             {
                 // Create a few challenges for our Adventurer's quest
                 // The "Challenge" Constructor takes three arguments
@@ -72,7 +73,7 @@ namespace Quest
                 };
                 Hat newHat = new Hat(8);
                 Adventurer theAdventurer = new Adventurer(player, newRobe, newHat);
-
+                theAdventurer.Awesomeness += (runCounter * 10) - 10;
                 Console.WriteLine(theAdventurer.GetDescription());
 
                 // A list of challenges for the Adventurer to complete
@@ -116,7 +117,8 @@ namespace Quest
                 string choice = Console.ReadLine();
                 if (choice.ToLower() == "y" || choice.ToLower() == "yes")
                 {
-                    NewQuest();
+                    runCounter++;
+                    NewQuest(runCounter);
                 }
                 else if (choice.ToLower() == "n" || choice.ToLower() == "no")
                 {
@@ -127,7 +129,7 @@ namespace Quest
                     Console.WriteLine("You don't follow insctructions very well.");
                 }
             }
-            NewQuest();
+            NewQuest(runCounter);
 
         }
         static int GetRandomInt(Random random, int min, int max)
